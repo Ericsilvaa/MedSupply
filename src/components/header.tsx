@@ -53,15 +53,18 @@ export default function Header({ cartItemCount }: HeaderProps) {
                         <span className='sr-only'>Conta</span>
                     </Button>
 
-                    <Button variant='ghost' size='icon' className='relative'>
-                        <ShoppingCart className='h-5 w-5' />
-                        <span className='sr-only'>Carrinho</span>
-                        {cartItemCount > 0 && (
-                            <span className='bg-primary text-primary-foreground absolute -top-1 -right-1 flex h-5 w-5 items-center justify-center rounded-full text-xs'>
-                                {cartItemCount}
-                            </span>
-                        )}
-                    </Button>
+                    <Link href='/cart'>
+                        {/* Link to the cart page */}
+                        <Button variant='ghost' size='icon'>
+                            <ShoppingCart className='h-5 w-5' />
+                            <span className='sr-only'>Carrinho</span>
+                            {cartItemCount > 0 && (
+                                <span className='absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-xs text-white'>
+                                    {cartItemCount}
+                                </span>
+                            )}
+                        </Button>
+                    </Link>
                 </div>
             </div>
         </header>
