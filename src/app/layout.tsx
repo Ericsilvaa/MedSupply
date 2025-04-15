@@ -3,7 +3,7 @@ import type React from 'react';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
-import AppToaster from '@/components/common/Toaster';
+import AppToaster from '@/components/common/toast/Toaster';
 import { ThemeProvider } from '@/components/theme-provider';
 
 import './globals.css';

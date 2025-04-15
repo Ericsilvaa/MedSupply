@@ -11,7 +11,6 @@ import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/co
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { generateSeedProducts } from '@/lib/seed';
 
-import { ShoppingCart } from 'lucide-react';
 import { toast } from 'sonner';
 
 type Product = {
@@ -39,7 +38,7 @@ export default function Home() {
     const [products] = useState<Product[]>(generateSeedProducts(30));
     const [cartItems, setCartItems] = useState<Product[]>([]);
     const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
-    console.log('🚀 ~ Home ~ products:', products);
+
     useEffect(() => {
         const saved = localStorage.getItem('cart');
         if (saved) setCartItems(JSON.parse(saved));
