@@ -6,9 +6,16 @@ import Header from '@/components/header';
 import HeroSection from '@/components/hero-section';
 import ProductGrid from '@/components/product-grid';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import type { Product } from '@/types/product';
 
-// Dados de exemplo para produtos hospitalares
+type Product = {
+    id: number;
+    code: string;
+    name: string;
+    image: string;
+    price: number;
+    category: string;
+};
+
 const products: Product[] = [
     {
         id: 1,
