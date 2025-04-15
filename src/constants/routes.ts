@@ -5,6 +5,12 @@ export const ROUTES = {
         ROOT: '/produtos',
         DETAIL: (id: string | number) => `/produtos/${id}`
     },
+    CART: '/carrinho',
+    CHECKOUT: {
+        ROOT: '/checkout',
+        CONFIRMATION: '/checkout/resumo',
+        SUCCESS: '/checkout/sucesso'
+    },
     CATEGORIES: '/categorias',
     PROMOTIONS: '/promocoes',
     ABOUT: '/sobre',
