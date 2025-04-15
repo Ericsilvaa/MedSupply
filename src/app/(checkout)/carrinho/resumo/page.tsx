@@ -1,9 +1,12 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
 
+import { CheckOrderButton } from '@/components/checkout/check-order-button';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Separator } from '@/components/ui/separator';
+import { customerInfo } from '@/mocks/checkout-order';
+import { useCartStore } from '@/stores/cart-store';
 
 import { ArrowRight, ChevronLeft, ClipboardList, CreditCard, MapPin, User } from 'lucide-react';
 
@@ -13,41 +16,11 @@ export const metadata: Metadata = {
 };
 
 export default function CheckoutReviewPage() {
-    // Simulando dados do pedido
-    const orderItems = [
-        {
-            id: 1,
-            name: 'Smartphone Premium XS',
-            price: 1299.99,
-            quantity: 1,
-            image: '/placeholder.svg?height=100&width=100'
-        },
-        {
-            id: 2,
-            name: 'Fones de Ouvido Bluetooth',
-            price: 149.99,
-            quantity: 2,
-            image: '/placeholder.svg?height=100&width=100'
-        },
-        {
-            id: 3,
-            name: 'Smartwatch Series 5',
-            price: 299.99,
-            quantity: 1,
-            image: '/placeholder.svg?height=100&width=100'
-        }
-    ];
+    const items = useCartStore((state) => state.items);
+    if (items.length === 0) return <p className='p-4'>Carrinho vazio.</p>;
 
-    // Simulando dados do cliente
-    const customerInfo = {
-        name: 'João Silva',
-        email: 'joao.silva@email.com',
-        phone: '(11) 98765-4321',
-        cpf: '123.456.789-00',
-        notes: 'Prefiro entrega no período da tarde.'
-    };
+    const subtotal = items.reduce((acc, item) => acc + item.total * item.cartQuantity, 0);
 
-    const subtotal = orderItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
     const shipping = 9.99;
     const total = subtotal + shipping;
 
@@ -67,17 +40,17 @@ export default function CheckoutReviewPage() {
                         </CardHeader>
                         <CardContent className='px-6'>
                             <div className='space-y-4'>
-                                {orderItems.map((item) => (
+                                {items.map((item) => (
                                     <div
-                                        key={item.id}
+                                        key={item.code}
                                         className='flex items-center justify-between border-b py-2 last:border-0'>
                                         <div className='flex-1'>
                                             <p className='font-medium'>{item.name}</p>
                                             <p className='text-muted-foreground text-sm'>
-                                                Quantidade: {item.quantity} x R$ {item.price.toFixed(2)}
+                                                Quantidade: {item.quantity} x R$ {item.unitPrice.toFixed(2)}
                                             </p>
                                         </div>
-                                        <p className='font-medium'>R$ {(item.price * item.quantity).toFixed(2)}</p>
+                                        <p className='font-medium'>R$ {(item.unitPrice * item.quantity).toFixed(2)}</p>
                                     </div>
                                 ))}
                             </div>
@@ -133,7 +106,7 @@ export default function CheckoutReviewPage() {
                         </CardContent>
                     </Card>
 
-                    <Card className='border-none shadow-lg'>
+                    {/* <Card className='border-none shadow-lg'>
                         <CardHeader className='flex flex-row items-center px-6'>
                             <MapPin className='text-primary mr-2 h-5 w-5' />
                             <CardTitle>Endereço de Entrega</CardTitle>
@@ -143,9 +116,9 @@ export default function CheckoutReviewPage() {
                                 O endereço de entrega será coletado pelo atendente durante o contato.
                             </p>
                         </CardContent>
-                    </Card>
+                    </Card> */}
 
-                    <Card className='border-none shadow-lg'>
+                    {/* <Card className='border-none shadow-lg'>
                         <CardHeader className='flex flex-row items-center px-6'>
                             <CreditCard className='text-primary mr-2 h-5 w-5' />
                             <CardTitle>Método de Pagamento</CardTitle>
@@ -155,7 +128,7 @@ export default function CheckoutReviewPage() {
                                 As opções de pagamento serão apresentadas pelo atendente durante o contato.
                             </p>
                         </CardContent>
-                    </Card>
+                    </Card> */}
 
                     <div className='flex justify-between'>
                         <Button variant='outline' asChild>
@@ -184,7 +157,7 @@ export default function CheckoutReviewPage() {
                                     <div className='space-y-2'>
                                         <div className='flex justify-between text-sm'>
                                             <span className='text-muted-foreground'>Itens</span>
-                                            <span>{orderItems.length}</span>
+                                            <span>{items.length}</span>
                                         </div>
                                         <div className='flex justify-between text-sm'>
                                             <span className='text-muted-foreground'>Subtotal</span>
@@ -202,12 +175,14 @@ export default function CheckoutReviewPage() {
                                     </div>
                                 </div>
 
-                                <Button className='w-full' size='lg' asChild>
-                                    <Link href='/checkout/sucesso' className='flex items-center justify-center'>
+                                {/* <Button className='w-full' size='lg' onClick={handleClick}>
+                                    <span className='flex items-center justify-center'>
                                         Finalizar Pedido
                                         <ArrowRight className='ml-2 h-4 w-4' />
-                                    </Link>
-                                </Button>
+                                    </span>
+                                </Button> */}
+
+                                <CheckOrderButton />
 
                                 <p className='text-muted-foreground text-center text-xs'>
                                     Ao confirmar, você concorda com nossos termos de serviço e política de privacidade.

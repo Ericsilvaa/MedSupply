@@ -112,7 +112,7 @@ export default function CheckoutPage() {
                         <CardContent className='px-6'>
                             <OrderSummary items={cartItems} shipping={shipping} total={total} />
                             <Separator className='my-6' />
-                            <Link href={ROUTES.CHECKOUT.CONFIRMATION}>
+                            <Link href={ROUTES.CHECKOUT.RESUME}>
                                 <Button className='w-full' size='lg' type='submit' form='checkout-form'>
                                     Confirmar Pedido
                                 </Button>

@@ -1,0 +1,218 @@
+{
+  "cliente": {
+    "nome": "CLIENTE ESPECIAL",
+    "cnpjCpf": "00000000000",
+    "telefone": "8534551200",
+    "endereco": {
+      "rua": "RUA SENADOR ALENCAR",
+      "numero": "267",
+      "bairro": "CENTRO",
+      "cidade": "Fortaleza",
+      "estado": "CE"
+    }
+  },
+  "vendedor": {
+    "id": "25532",
+    "nome": "HUDSON MONTEIRO DE SO"
+  },
+  "pagamento": {
+    "condicao": "A VISTA",
+    "forma": "CARTEIRA"
+  },
+  "produtos": [
+    {
+      "codigo": "30618",
+      "descricao": "ESPATULA 6335 1 P/ SILICATO ADULTO GOL",
+      "unidade": "UN",
+      "quantidade": 1,
+      "precoUnitario": 17.80,
+      "total": 16.38
+    },
+    {
+      "codigo": "31680240",
+      "descricao": "SONDA MILIMETRADA OMS MILLENNIUM",
+      "unidade": "UN",
+      "quantidade": 1,
+      "precoUnitario": 60.20,
+      "total": 55.38
+    },
+    {
+      "codigo": "3160565",
+      "descricao": "ALICATE ORTO 139 ANGLE BENDING GOLGRAN",
+      "unidade": "UN",
+      "quantidade": 1,
+      "precoUnitario": 103.00,
+      "total": 94.76
+    },
+    {
+      "codigo": "9577",
+      "descricao": "AGULHA CURTA DENCOJET",
+      "unidade": "UN",
+      "quantidade": 1,
+      "precoUnitario": 42.60,
+      "total": 39.19
+    },
+    {
+      "codigo": "31683395",
+      "descricao": "SERINGA DE CARPULE COM REFLUXO GOLGRAN",
+      "unidade": "UN",
+      "quantidade": 1,
+      "precoUnitario": 65.00,
+      "total": 59.80
+    },
+    {
+      "codigo": "509565703",
+      "descricao": "LAMINA DE BISTURI N15C C/100 UN CARBON",
+      "unidade": "UN",
+      "quantidade": 1,
+      "precoUnitario": 0.40,
+      "total": 0.37
+    },
+    {
+      "codigo": "509562924",
+      "descricao": "CABO P/ BISTURI 03 GOLGRAN",
+      "unidade": "UN",
+      "quantidade": 1,
+      "precoUnitario": 11.10,
+      "total": 10.21
+    },
+    {
+      "codigo": "31673150",
+      "descricao": "TESOURA IRIS 11,5CM RETA GOLGRAN",
+      "unidade": "UN",
+      "quantidade": 1,
+      "precoUnitario": 24.20,
+      "total": 22.26
+    },
+    {
+      "codigo": "509565828",
+      "descricao": "FIO DE SUTURA NYLON 3-0 45 CM C/AG 20M",
+      "unidade": "UN",
+      "quantidade": 1,
+      "precoUnitario": 43.60,
+      "total": 40.11
+    },
+    {
+      "codigo": "31674096",
+      "descricao": "PORTA AGULHA MAYO HEGAR 14CM GOLGRAN",
+      "unidade": "UN",
+      "quantidade": 1,
+      "precoUnitario": 39.50,
+      "total": 36.34
+    },
+    {
+      "codigo": "509565789",
+      "descricao": "TOUCA SANFONADA C/ ELASTICO MEDIX 100U",
+      "unidade": "UN",
+      "quantidade": 1,
+      "precoUnitario": 10.50,
+      "total": 10.50
+    },
+    {
+      "codigo": "9461",
+      "descricao": "LUVA PROCEDIM LATEX COM PO TAM P 100UN",
+      "unidade": "UN",
+      "quantidade": 1,
+      "precoUnitario": 30.10,
+      "total": 30.10
+    },
+    {
+      "codigo": "509566924",
+      "descricao": "MASCARA TRIPLA C/ELAST AZUL 50UN CAIXA",
+      "unidade": "UN",
+      "quantidade": 1,
+      "precoUnitario": 9.80,
+      "total": 9.80
+    },
+    {
+      "codigo": "509565519",
+      "descricao": "OCULOS VICSA AERIAL INCOLOR -DANNY",
+      "unidade": "UN",
+      "quantidade": 1,
+      "precoUnitario": 20.00,
+      "total": 20.00
+    },
+    {
+      "codigo": "29438",
+      "descricao": "AVENTAL DESC.UND -DESCARPACK",
+      "unidade": "CX",
+      "quantidade": 10,
+      "precoUnitario": 2.40,
+      "total": 24.00
+    },
+    {
+      "codigo": "3160503",
+      "descricao": "ESCULPIDOR HOLLEMBECK 3S GOLGRAN",
+      "unidade": "UN",
+      "quantidade": 1,
+      "precoUnitario": 17.20,
+      "total": 15.82
+    },
+    {
+      "codigo": "31926799",
+      "descricao": "ESCULPIDOR LECRON 5 GOLGRAN",
+      "unidade": "UN",
+      "quantidade": 1,
+      "precoUnitario": 19.50,
+      "total": 17.94
+    },
+    {
+      "codigo": "30359",
+      "descricao": "ESPATULA 7 DUPLA GOLGRAN",
+      "unidade": "UN",
+      "quantidade": 1,
+      "precoUnitario": 17.80,
+      "total": 16.38
+    },
+    {
+      "codigo": "509566146",
+      "descricao": "CERA P/ ESCULTURA MICRO MARFIM REGULAR",
+      "unidade": "UN",
+      "quantidade": 1,
+      "precoUnitario": 20.70,
+      "total": 19.04
+    },
+    {
+      "codigo": "509562923",
+      "descricao": "CABO P/ESPELHO BUCAL - GOLGRAN",
+      "unidade": "UN",
+      "quantidade": 1,
+      "precoUnitario": 7.50,
+      "total": 6.90
+    },
+    {
+      "codigo": "509562946",
+      "descricao": "ESPELHO PLANO 05 GOLGRAN",
+      "unidade": "UN",
+      "quantidade": 1,
+      "precoUnitario": 5.40,
+      "total": 4.97
+    },
+    {
+      "codigo": "30670",
+      "descricao": "SONDA EXPLORADORA 5 GOLGRAN",
+      "unidade": "UN",
+      "quantidade": 1,
+      "precoUnitario": 14.50,
+      "total": 13.34
+    },
+    {
+      "codigo": "31673792",
+      "descricao": "PINCA CLINICA P/ ALGODAO C (317) GOLGR",
+      "unidade": "UN",
+      "quantidade": 1,
+      "precoUnitario": 17.80,
+      "total": 16.38
+    }
+  ],
+  "valores": {
+    "subTotal": 622.20,
+    "desconto": 42.22,
+    "total": 579.98
+  },
+  "meta": {
+    "preVenda": "205849",
+    "data": "2025-03-12",
+    "valorFiscal": false
+  }
+}

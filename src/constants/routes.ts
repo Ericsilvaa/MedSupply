@@ -1,21 +1,23 @@
-// constants/routes.ts
 export const ROUTES = {
     HOME: '/',
     PRODUCTS: {
         ROOT: '/produtos',
-        DETAIL: (id: string | number) => `/produtos/${id}`
+        DETAIL: (code: string | number) => `/products/${code}`
     },
-    CART: '/carrinho',
     CHECKOUT: {
+        CART: '/carrinho',
         ROOT: '/checkout',
-        CONFIRMATION: '/checkout/resumo',
-        SUCCESS: '/checkout/sucesso'
+        RESUME: '/carrinho/resumo',
+        SUCCESS: '/carrinho/resumo/sucesso'
     },
     CATEGORIES: '/categorias',
     PROMOTIONS: '/promocoes',
-    ABOUT: '/sobre',
-    CONTACT: '/contato',
-    FAQ: '/faq',
-    TERMS: '/termos',
-    PRIVACY: '/privacidade'
+
+    COMPANY: {
+        ABOUT: '/sobre',
+        CONTACT: '/contato',
+        FAQ: '/faq',
+        TERMS: '/terms',
+        PRIVACY: '/privacy'
+    }
 } as const;
