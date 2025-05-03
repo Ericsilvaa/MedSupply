@@ -65,6 +65,7 @@ export function generateSeedProducts(count = 12) {
         name: faker.commerce.productName(),
         image: hospitalImages[i % hospitalImages.length],
         price: Number(faker.commerce.price({ min: 1000, max: 50000 })),
-        category: faker.helpers.arrayElement(categories)
+        category: faker.helpers.arrayElement(categories),
+        quantity: faker.number.int({ min: 1, max: 10 })
     }));
 }

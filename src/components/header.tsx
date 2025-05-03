@@ -38,12 +38,12 @@ export default function Header({ cartItemCount }: HeaderProps) {
 
                 <div className='flex flex-1 items-center justify-center md:justify-center'>
                     <Link href='/' className='flex items-center space-x-2'>
-                        <span className='text-xl font-bold'>MEDSUPPLY</span>
+                        <span className='text-xl font-bold'>CASA DO DENTISTA </span>
                     </Link>
                 </div>
 
                 <div className='flex flex-1 items-center justify-end gap-4'>
-                    <Button variant='ghost' size='icon'>
+                    {/* <Button variant='ghost' size='icon'>
                         <Search className='h-5 w-5' />
                         <span className='sr-only'>Pesquisar</span>
                     </Button>
@@ -51,9 +51,9 @@ export default function Header({ cartItemCount }: HeaderProps) {
                     <Button variant='ghost' size='icon'>
                         <User className='h-5 w-5' />
                         <span className='sr-only'>Conta</span>
-                    </Button>
+                    </Button> */}
 
-                    <Link href='/cart'>
+                    <Link href='/carrinho' className='relative'>
                         {/* Link to the cart page */}
                         <Button variant='ghost' size='icon'>
                             <ShoppingCart className='h-5 w-5' />
