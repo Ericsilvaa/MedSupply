@@ -66,7 +66,7 @@ export default function ProductCard({ product, onAddToCart }: ProductCardProps) 
           className="object-cover transition-transform duration-500 group-hover:scale-110"
         /> */}
                 <ImageWithFallback
-                    src={product.image}
+                    src={product.image ?? '/placeholder.svg'}
                     alt={product.name}
                     fill
                     className='object-cover transition-transform duration-500 group-hover:scale-110'
@@ -84,7 +84,7 @@ export default function ProductCard({ product, onAddToCart }: ProductCardProps) 
                 </div>
             </CardContent>
             <CardFooter className='flex items-center justify-between p-4 pt-0'>
-                <p className='font-bold'>{formatPrice(product.price)}</p>
+                {/* <p className='font-bold'>{formatPrice(product.price)}</p> */}
                 <Button
                     size='icon'
                     variant='ghost'

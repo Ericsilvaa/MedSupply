@@ -1,5 +1,3 @@
-'use client'
-
 import type { Metadata } from 'next';
 import Link from 'next/link';
 
@@ -12,10 +10,10 @@ import { useCartStore } from '@/stores/cart-store';
 
 import { ArrowRight, ChevronLeft, ClipboardList, CreditCard, MapPin, User } from 'lucide-react';
 
-// export const metadata: Metadata = {
-//     title: 'Resumo do Pedido | WappCart',
-//     description: 'Revise os detalhes do seu pedido antes de confirmar.'
-// };
+export const metadata: Metadata = {
+    title: 'Resumo do Pedido | WappCart',
+    description: 'Revise os detalhes do seu pedido antes de confirmar.'
+};
 
 export default function CheckoutReviewPage() {
     const items = useCartStore((state) => state.items);

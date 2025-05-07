@@ -10,17 +10,9 @@ import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { generateSeedProducts } from '@/lib/seed';
+import { Product } from '@/types/product';
 
 import { toast } from 'sonner';
-
-type Product = {
-    id: number;
-    code: string;
-    name: string;
-    image: string;
-    price: number;
-    category: string;
-};
 
 const categories = [
     { id: 'todos', name: 'Todos os Produtos' },
