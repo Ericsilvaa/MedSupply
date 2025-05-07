@@ -2,7 +2,7 @@ export const ROUTES = {
     HOME: '/',
     PRODUCTS: {
         ROOT: '/produtos',
-        DETAIL: (code: string | number) => `/products/${code}`
+        DETAIL: (code: string | number) => `/product/${code}`
     },
     CART: {
         ROOT: '/carrinho',
