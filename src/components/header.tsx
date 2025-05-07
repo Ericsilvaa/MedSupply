@@ -9,6 +9,7 @@ import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 
 import { Menu, Search, ShoppingCart, User } from 'lucide-react';
+import { ROUTES } from '@/constants/routes';
 
 interface HeaderProps {
     cartItemCount: number;
@@ -53,7 +54,7 @@ export default function Header({ cartItemCount }: HeaderProps) {
                         <span className='sr-only'>Conta</span>
                     </Button>
 
-                    <Link href='/cart'>
+                    <Link href={ROUTES.CHECKOUT.CART}>
                         {/* Link to the cart page */}
                         <Button variant='ghost' size='icon'>
                             <ShoppingCart className='h-5 w-5' />

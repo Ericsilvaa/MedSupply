@@ -10,8 +10,8 @@ export function NavigationMenu() {
         { name: 'Produtos', href: ROUTES.PRODUCTS.ROOT },
         { name: 'Categorias', href: ROUTES.CATEGORIES },
         { name: 'Promoções', href: ROUTES.PROMOTIONS },
-        { name: 'Sobre', href: ROUTES.ABOUT },
-        { name: 'Contato', href: ROUTES.CONTACT }
+        { name: 'Sobre', href: ROUTES.COMPANY.ABOUT },
+        { name: 'Contato', href: ROUTES.COMPANY.CONTACT }
     ];
 
     return (
