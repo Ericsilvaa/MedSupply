@@ -6,28 +6,15 @@ import MiniCart from '@/components/cart/mini-cart';
 import Header from '@/components/header';
 import HeroSection from '@/components/hero-section';
 import ProductGrid from '@/components/product-grid';
-import { Button } from '@/components/ui/button';
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { generateSeedProducts } from '@/lib/seed';
+import { filter_categories } from '@/constants/filters';
+import { products_data } from '@/db/product-data';
 import { Product } from '@/types/product';
 
 import { toast } from 'sonner';
 
-const categories = [
-    { id: 'todos', name: 'Todos os Produtos' },
-    { id: 'monitoramento', name: 'Monitoramento' },
-    { id: 'emergencia', name: 'Emergência' },
-    { id: 'medicacao', name: 'Medicação' },
-    { id: 'respiratorio', name: 'Respiratório' },
-    { id: 'mobiliario', name: 'Mobiliário' },
-    { id: 'cirurgia', name: 'Cirurgia' },
-    { id: 'esterilizacao', name: 'Esterilização' },
-    { id: 'diagnostico', name: 'Diagnóstico' }
-];
-
 export default function Home() {
-    const [products] = useState<Product[]>(generateSeedProducts(30));
+    const [products] = useState<any[]>(products_data);
     const [cartItems, setCartItems] = useState<Product[]>([]);
     const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
 
@@ -74,7 +61,7 @@ export default function Home() {
 
                 <Tabs defaultValue='todos' className='w-full'>
                     <TabsList className='mb-8 flex flex-wrap gap-2 bg-transparent'>
-                        {categories.map((category) => (
+                        {filter_categories.map((category) => (
                             <TabsTrigger
                                 key={category.id}
                                 value={category.id}
@@ -88,7 +75,7 @@ export default function Home() {
                         <ProductGrid products={getSorted(products)} onAddToCart={addToCart} />
                     </TabsContent>
 
-                    {categories.slice(1).map((category) => (
+                    {filter_categories.slice(1).map((category) => (
                         <TabsContent key={category.id} value={category.id}>
                             <ProductGrid
                                 products={getSorted(products.filter((p) => p.category === category.id))}
