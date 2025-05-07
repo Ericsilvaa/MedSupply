@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
@@ -49,51 +50,54 @@ export default function ProductCard({ product, onAddToCart }: ProductCardProps) 
     };
 
     return (
-        <Card className='group overflow-hidden transition-all duration-300 hover:shadow-md'>
-            <div className='bg-muted/10 relative aspect-square overflow-hidden'>
-                <div className='absolute inset-0 z-10 flex items-center justify-center bg-black/40 opacity-0 transition-opacity group-hover:opacity-100'>
+        <Link href={`/product/${product.code}`}>
+            <Card className='group overflow-hidden transition-all duration-300 hover:shadow-md'>
+                <div className='bg-muted/10 relative aspect-square overflow-hidden'>
+                    {/* <div className='absolute inset-0 z-10 flex items-center justify-center bg-black/40 opacity-0 transition-opacity group-hover:opacity-100'>
                     <Button
                         onClick={onAddToCart}
                         variant='secondary'
                         className='translate-y-4 transform opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100'>
                         Adicionar ao Carrinho
                     </Button>
-                </div>
-                {/* <Image
+                </div> */}
+                    {/* <Image
           src={product.image || "/placeholder.svg"}
           alt={product.name}
           fill
           className="object-cover transition-transform duration-500 group-hover:scale-110"
         /> */}
-                <ImageWithFallback
-                    src={product.image ?? '/placeholder.svg'}
-                    alt={product.name}
-                    fill
-                    className='object-cover transition-transform duration-500 group-hover:scale-110'
-                />
-                <div className='absolute top-2 left-2 z-20'>
-                    <Badge variant='outline' className={`${categoryColors[product.category]} border-0`}>
-                        {categoryNames[product.category]}
-                    </Badge>
+
+                    <ImageWithFallback
+                        src={product.image ?? '/placeholder.svg'}
+                        alt={product.name}
+                        fill
+                        className='object-cover transition-transform duration-500 group-hover:scale-110'
+                    />
+                    <div className='absolute top-2 left-2 z-20'>
+                        <Badge variant='outline' className={`${categoryColors[product.category]} border-0`}>
+                            {categoryNames[product.category]}
+                        </Badge>
+                    </div>
                 </div>
-            </div>
-            <CardContent className='p-4'>
-                <div className='space-y-1'>
-                    <p className='text-muted-foreground text-xs'>Cód. {product.code}</p>
-                    <h3 className='line-clamp-1 font-medium'>{product.name}</h3>
-                </div>
-            </CardContent>
-            <CardFooter className='flex items-center justify-between p-4 pt-0'>
-                {/* <p className='font-bold'>{formatPrice(product.price)}</p> */}
-                <Button
-                    size='icon'
-                    variant='ghost'
-                    onClick={onAddToCart}
-                    className='bg-primary/10 hover:bg-primary/20 h-8 w-8 rounded-full'>
-                    <Plus className='h-4 w-4' />
-                    <span className='sr-only'>Adicionar ao carrinho</span>
-                </Button>
-            </CardFooter>
-        </Card>
+                <CardContent className='p-4'>
+                    <div className='space-y-1'>
+                        <p className='text-muted-foreground text-xs'>Cód. {product.code}</p>
+                        <h3 className='line-clamp-1 font-medium'>{product.name}</h3>
+                    </div>
+                </CardContent>
+                <CardFooter className='flex items-center justify-between p-4 pt-0'>
+                    {/* <p className='font-bold'>{formatPrice(product.price)}</p> */}
+                    <Button
+                        size='icon'
+                        variant='ghost'
+                        onClick={onAddToCart}
+                        className='bg-primary/10 hover:bg-primary/20 h-8 w-8 rounded-full'>
+                        <Plus className='h-4 w-4' />
+                        <span className='sr-only'>Adicionar ao carrinho</span>
+                    </Button>
+                </CardFooter>
+            </Card>
+        </Link>
     );
 }

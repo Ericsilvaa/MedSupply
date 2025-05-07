@@ -105,9 +105,7 @@ const products = [
     }
 ] as const;
 
-export default function ProductPage({ params }: ProductPageProps) {
-    console.log('🚀 ~ ProductPage ~ params:', params.id);
-
+export default async function ProductPage({ params }: ProductPageProps) {
     const product = products.find((p) => p.codigo === params.id);
 
     if (!product) return notFound();
