@@ -61,7 +61,7 @@ export default function CheckoutPage() {
                             <CheckoutForm />
                         </CardContent>
                     </Card>
-                    <Card className='border-none shadow-lg'>
+                    {/* <Card className='border-none shadow-lg'>
                         <CardHeader className='flex flex-row items-center px-6'>
                             <Truck className='text-primary mr-2 h-5 w-5' />
                             <CardTitle>Endereço de Entrega</CardTitle>
@@ -70,15 +70,14 @@ export default function CheckoutPage() {
                             <p className='text-muted-foreground mb-4 text-sm'>
                                 Informe o endereço onde deseja receber seus produtos.
                             </p>
-                            {/* Componente de endereço seria adicionado aqui */}
                             <div className='py-4 text-center'>
                                 <p className='text-muted-foreground'>
                                     O endereço será coletado pelo atendente durante o contato.
                                 </p>
                             </div>
                         </CardContent>
-                    </Card>
-                    <Card className='border-none shadow-lg'>
+                    </Card> */}
+                    {/* <Card className='border-none shadow-lg'>
                         <CardHeader className='flex flex-row items-center px-6'>
                             <CreditCard className='text-primary mr-2 h-5 w-5' />
                             <CardTitle>Método de Pagamento</CardTitle>
@@ -87,14 +86,13 @@ export default function CheckoutPage() {
                             <p className='text-muted-foreground mb-4 text-sm'>
                                 Escolha como deseja pagar pelo seu pedido.
                             </p>
-                            {/* Componente de pagamento seria adicionado aqui */}
                             <div className='py-4 text-center'>
                                 <p className='text-muted-foreground'>
                                     As opções de pagamento serão apresentadas pelo atendente durante o contato.
                                 </p>
                             </div>
                         </CardContent>
-                    </Card>
+                    </Card> */}
                     <div className='flex justify-between'>
                         <Button variant='outline' asChild>
                             <Link href='/carrinho' className='flex items-center'>
@@ -112,7 +110,7 @@ export default function CheckoutPage() {
                         <CardContent className='px-6'>
                             <OrderSummary items={cartItems} shipping={shipping} total={total} />
                             <Separator className='my-6' />
-                            <Link href={ROUTES.CHECKOUT.RESUME}>
+                            <Link href={ROUTES.CART.RESUME}>
                                 <Button className='w-full' size='lg' type='submit' form='checkout-form'>
                                     Confirmar Pedido
                                 </Button>

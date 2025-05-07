@@ -16,7 +16,6 @@ export const metadata: Metadata = {
 };
 
 export default function CartPage() {
-    // Simulando dados do carrinho
     const cartItems = [
         {
             id: 1,
@@ -92,7 +91,7 @@ export default function CartPage() {
                     <div>
                         <CartSummary cartItems={cartItems} />
 
-                        <Card className='mt-6 border-none shadow-lg'>
+                        {/* <Card className='mt-6 border-none shadow-lg'>
                             <CardHeader className='px-6'>
                                 <CardTitle>Cupom de Desconto</CardTitle>
                             </CardHeader>
@@ -102,7 +101,7 @@ export default function CartPage() {
                                     <Button variant='outline'>Aplicar</Button>
                                 </div>
                             </CardContent>
-                        </Card>
+                        </Card> */}
                     </div>
                 </div>
             )}

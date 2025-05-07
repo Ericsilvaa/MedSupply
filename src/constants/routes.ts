@@ -4,11 +4,13 @@ export const ROUTES = {
         ROOT: '/produtos',
         DETAIL: (code: string | number) => `/products/${code}`
     },
+    CART: {
+        ROOT: '/carrinho',
+        RESUME: '/carrinho/resumo'
+    },
     CHECKOUT: {
-        CART: '/carrinho',
         ROOT: '/checkout',
-        RESUME: '/carrinho/resumo',
-        SUCCESS: '/carrinho/resumo/sucesso'
+        SUCCESS: '/checkout/sucess'
     },
     CATEGORIES: '/categorias',
     PROMOTIONS: '/promocoes',

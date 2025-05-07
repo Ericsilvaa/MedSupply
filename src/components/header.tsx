@@ -11,7 +11,7 @@ import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
 import { Menu, Search, ShoppingCart, User } from 'lucide-react';
 
 interface HeaderProps {
-    cartItemCount: number;
+    cartItemCount?: number;
 }
 
 export default function Header({ cartItemCount }: HeaderProps) {
@@ -58,7 +58,7 @@ export default function Header({ cartItemCount }: HeaderProps) {
                         <Button variant='ghost' size='icon'>
                             <ShoppingCart className='h-5 w-5' />
                             <span className='sr-only'>Carrinho</span>
-                            {cartItemCount > 0 && (
+                            {(cartItemCount ?? 0) > 0 && (
                                 <span className='absolute -top-1 -right-1 flex h-4 w-4 items-center justify-center rounded-full bg-red-500 text-xs text-white'>
                                     {cartItemCount}
                                 </span>
