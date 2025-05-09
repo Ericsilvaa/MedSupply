@@ -2,18 +2,9 @@
 
 import Link from 'next/link';
 
-import { ROUTES } from '@/constants/routes';
+import { NAV_ITEMS } from '@/constants/navigation';
 
 export function NavigationMenu() {
-    const NAV_ITEMS = [
-        { name: 'Início', href: ROUTES.HOME },
-        { name: 'Produtos', href: ROUTES.PRODUCTS.ROOT },
-        { name: 'Categorias', href: ROUTES.CATEGORIES },
-        { name: 'Promoções', href: ROUTES.PROMOTIONS },
-        { name: 'Sobre', href: ROUTES.COMPANY.ABOUT },
-        { name: 'Contato', href: ROUTES.COMPANY.CONTACT }
-    ];
-
     return (
         <nav className='flex flex-col gap-4 md:flex-row md:items-center md:gap-6'>
             {NAV_ITEMS.map((item) => (
