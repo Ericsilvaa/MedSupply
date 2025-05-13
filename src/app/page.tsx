@@ -1,20 +1,26 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import MiniCart from '@/components/cart/mini-cart';
 import Header from '@/components/header';
 import HeroSection from '@/components/hero-section';
 import ProductGrid from '@/components/product-grid';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { filter_categories } from '@/constants/filters';
-import { products_data } from '@/db/product-data';
-import { Product } from '@/types/product';
+import { generateSeedProducts } from '@/lib/seed';
+import { Product, ProductWitCategory } from '@/types/product';
+import { CATEGORY_PATTERNS, getProductCategory } from '@/utils/productsWithCategory';
 
+import { produtos } from '../db/produtos';
 import { toast } from 'sonner';
 
 export default function Home() {
-    const [products] = useState<any[]>(products_data);
+    const [products] = useState<ProductWitCategory[]>(
+        produtos.map((produto) => ({
+            ...produto,
+            categoria: getProductCategory(produto)
+        }))
+    );
     const [cartItems, setCartItems] = useState<Product[]>([]);
     const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
 
@@ -29,11 +35,17 @@ export default function Home() {
 
     const addToCart = (product: Product) => {
         setCartItems((prev) => [...prev, product]);
-        toast.success(`${product.name} adicionado ao carrinho`);
+        toast.success(`${product.nome} adicionado ao carrinho`);
     };
 
-    const getSorted = (items: Product[]) =>
-        [...items].sort((a, b) => (sortOrder === 'asc' ? a.price - b.price : b.price - a.price));
+    const getSorted = (items: ProductWitCategory[], order: 'asc' | 'desc') =>
+        [...items].sort((a, b) => (order === 'asc' ? a.preco - b.preco : b.preco - a.preco));
+
+    const getFilteredAndSorted = (categoryId: string): ProductWitCategory[] => {
+        const filtered = categoryId === 'todos' ? products : products.filter((p) => p.categoria === categoryId);
+
+        return getSorted(filtered, sortOrder);
+    };
 
     return (
         <main className='bg-background min-h-screen'>
@@ -61,24 +73,27 @@ export default function Home() {
 
                 <Tabs defaultValue='todos' className='w-full'>
                     <TabsList className='mb-8 flex flex-wrap gap-2 bg-transparent'>
-                        {filter_categories.map((category) => (
+                        {CATEGORY_PATTERNS.map(({ category }) => (
                             <TabsTrigger
-                                key={category.id}
-                                value={category.id}
+                                key={category}
+                                value={category}
                                 className='data-[state=active]:bg-primary data-[state=active]:text-primary-foreground'>
-                                {category.name}
+                                {category}
                             </TabsTrigger>
                         ))}
                     </TabsList>
 
                     <TabsContent value='todos'>
-                        <ProductGrid products={getSorted(products)} onAddToCart={addToCart} />
+                        <ProductGrid products={getFilteredAndSorted('todos')} onAddToCart={addToCart} />
                     </TabsContent>
 
-                    {filter_categories.slice(1).map((category) => (
-                        <TabsContent key={category.id} value={category.id}>
+                    {CATEGORY_PATTERNS.slice(1).map(({ category }) => (
+                        <TabsContent key={category} value={category}>
                             <ProductGrid
-                                products={getSorted(products.filter((p) => p.category === category.id))}
+                                products={getSorted(
+                                    products.filter((p) => p.categoria === category),
+                                    sortOrder
+                                )}
                                 onAddToCart={addToCart}
                             />
                         </TabsContent>

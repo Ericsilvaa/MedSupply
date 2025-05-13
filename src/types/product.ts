@@ -1,25 +1,27 @@
-export interface Product {
-    id: number;
-    code: string;
-    name: string;
-    image?: string;
-    category: string;
-    price: number;
-    quantity: number;
-}
+export type Categoria =
+    | 'Instrumentais Periodontais'
+    | 'EPI'
+    | 'Injetáveis'
+    | 'Suturas'
+    | 'Instrumentais'
+    | 'Isolamento'
+    | 'Brocas'
+    | 'Cirúrgicos'
+    | 'Acessórios'
+    | 'Moldeiras / Moldagens'
+    | 'Kits Clínicos'
+    | 'Profilaxia'
+    | 'Todos';
 
-export interface ProductById {
-    id: number;
-    code: string;
-    name: string;
-    image?: string;
-    price: number;
-    category: string;
-    description?: string;
-    specifications?: { [key: string]: string };
-    features?: string[];
-    stock?: number;
-    manufacturer?: string;
-    warranty?: string;
-    relatedProducts?: number[];
-}
+export type Product = {
+    codigo: string;
+    nome: string;
+    descricao?: string;
+    preco: number;
+    imagem: string;
+    estoque: number;
+};
+
+export type ProductWitCategory = Product & {
+    categoria?: Categoria;
+};
