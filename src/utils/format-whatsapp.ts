@@ -34,3 +34,11 @@ export function generateWhatsAppLink(items: CartItem[]) {
     const msg = generateWhatsAppMessage(items);
     return `https://wa.me/${agent.phone}?text=${msg}`;
 }
+
+export function formatWhatsappLink(user: any, items: any[], dentalPhone: string) {
+    const itemList = items.map((item) => `- ${item.name}`).join('\n');
+
+    const message = `Olá, sou estudante da ${user.institution} e gostaria de um orçamento para os seguintes materiais:\n\n${itemList}\n\nNome: ${user.name}\nMatrícula: ${user.registration}\nEndereço: ${user.address}`;
+
+    return `https://wa.me/${dentalPhone}?text=${encodeURIComponent(message)}`;
+}
