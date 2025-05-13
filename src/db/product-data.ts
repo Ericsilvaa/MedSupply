@@ -1,6 +1,4 @@
-import type { ProductById } from '@/types/product';
-
-export const products_data: ProductById[] = [
+export const products_data = [
     {
         id: 1,
         code: '0001',

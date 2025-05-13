@@ -28,7 +28,7 @@ const CATEGORY_NAMES: Record<Categoria, string> = {
     'Moldeiras / Moldagens': 'Moldeiras e Moldagens',
     'Kits Clínicos': 'Kits Clínicos',
     Profilaxia: 'Profilaxia e Higiene',
-    Outros: 'Outros Produtos' // ✅ adicionado
+    Todos: 'Todos os Produtos' // ✅ adicionado
 };
 
 const CATEGORY_COLORS: Record<Categoria, string> = {
@@ -44,7 +44,7 @@ const CATEGORY_COLORS: Record<Categoria, string> = {
     'Moldeiras / Moldagens': 'bg-amber-100 text-amber-800',
     'Kits Clínicos': 'bg-cyan-100 text-cyan-800',
     Profilaxia: 'bg-lime-100 text-lime-800',
-    Outros: 'bg-gray-100 text-gray-800' // ✅ adicionado
+    Todos: 'bg-gray-100 text-gray-800' // ✅ adicionado
 };
 
 const getProductCategory = (produto: { nome: string; descricao?: string }): Categoria => {
@@ -57,7 +57,7 @@ const getProductCategory = (produto: { nome: string; descricao?: string }): Cate
         }
     }
 
-    return 'Outros';
+    return 'Todos';
 };
 
 export { getProductCategory, CATEGORY_PATTERNS, CATEGORY_COLORS, CATEGORY_NAMES };
