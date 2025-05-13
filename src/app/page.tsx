@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import MiniCart from '@/components/cart/mini-cart';
 import Header from '@/components/header';
@@ -9,27 +9,25 @@ import ProductGrid from '@/components/product-grid';
 import { Button } from '@/components/ui/button';
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { generateSeedProducts } from '@/lib/seed';
-import { Product } from '@/types/product';
+import { Product, ProductWitCategory } from '@/types/product';
+import { CATEGORY_PATTERNS, getProductCategory } from '@/utils/productsWithCategory';
 
+import { produtos } from '../db/produtos';
 import { toast } from 'sonner';
 
-const categories = [
-    { id: 'todos', name: 'Todos os Produtos' },
-    { id: 'monitoramento', name: 'Monitoramento' },
-    { id: 'emergencia', name: 'Emergência' },
-    { id: 'medicacao', name: 'Medicação' },
-    { id: 'respiratorio', name: 'Respiratório' },
-    { id: 'mobiliario', name: 'Mobiliário' },
-    { id: 'cirurgia', name: 'Cirurgia' },
-    { id: 'esterilizacao', name: 'Esterilização' },
-    { id: 'diagnostico', name: 'Diagnóstico' }
-];
+type SortOrder = 'asc' | 'desc';
+
+const ProductsWithCategory = produtos.map((product) => ({
+    ...product,
+    categoria: getProductCategory(product)
+}));
 
 export default function Home() {
-    const [products] = useState<Product[]>(generateSeedProducts(30));
+    const [products] = useState<ProductWitCategory[]>(ProductsWithCategory);
+    console.log('🚀 ~ Home ~ products:', products);
+
+    const [sortOrder, setSortOrder] = useState<SortOrder>('asc');
     const [cartItems, setCartItems] = useState<Product[]>([]);
-    const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('asc');
 
     useEffect(() => {
         const saved = localStorage.getItem('cart');
@@ -42,11 +40,17 @@ export default function Home() {
 
     const addToCart = (product: Product) => {
         setCartItems((prev) => [...prev, product]);
-        toast.success(`${product.name} adicionado ao carrinho`);
+        toast.success(`${product.nome} adicionado ao carrinho`);
     };
 
-    const getSorted = (items: Product[]) =>
-        [...items].sort((a, b) => (sortOrder === 'asc' ? a.price - b.price : b.price - a.price));
+    const getSorted = (items: ProductWitCategory[], order: 'asc' | 'desc') =>
+        [...items].sort((a, b) => (order === 'asc' ? a.preco - b.preco : b.preco - a.preco));
+
+    const getFilteredAndSorted = (categoryId: string): ProductWitCategory[] => {
+        const filtered = categoryId === 'todos' ? products : products.filter((p) => p.categoria === categoryId);
+
+        return getSorted(filtered, sortOrder);
+    };
 
     return (
         <main className='bg-background min-h-screen'>
@@ -74,28 +78,34 @@ export default function Home() {
 
                 <Tabs defaultValue='todos' className='w-full'>
                     <TabsList className='mb-8 flex flex-wrap gap-2 bg-transparent'>
-                        {categories.map((category) => (
+                        {CATEGORY_PATTERNS.map(({ category }) => (
                             <TabsTrigger
-                                key={category.id}
-                                value={category.id}
+                                key={category}
+                                value={category}
                                 className='data-[state=active]:bg-primary data-[state=active]:text-primary-foreground'>
-                                {category.name}
+                                {category}
                             </TabsTrigger>
                         ))}
                     </TabsList>
 
                     <TabsContent value='todos'>
-                        <ProductGrid products={getSorted(products)} onAddToCart={addToCart} />
+                        <ProductGrid products={getFilteredAndSorted('todos')} onAddToCart={addToCart} />
                     </TabsContent>
 
-                    {categories.slice(1).map((category) => (
-                        <TabsContent key={category.id} value={category.id}>
+                    {CATEGORY_PATTERNS.map(({ category }) => (
+                        <TabsContent key={category} value={category}>
+                            <ProductGrid products={getFilteredAndSorted(category)} onAddToCart={addToCart} />
+                        </TabsContent>
+                    ))}
+
+                    {/* {categories.slice(1).map((category) => (
+                        <TabsContent key={category} value={category.id}>
                             <ProductGrid
                                 products={getSorted(products.filter((p) => p.category === category.id))}
                                 onAddToCart={addToCart}
                             />
                         </TabsContent>
-                    ))}
+                    ))} */}
                 </Tabs>
             </div>
         </main>

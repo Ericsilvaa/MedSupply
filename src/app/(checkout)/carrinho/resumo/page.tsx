@@ -175,13 +175,6 @@ export default function CheckoutReviewPage() {
                                     </div>
                                 </div>
 
-                                {/* <Button className='w-full' size='lg' onClick={handleClick}>
-                                    <span className='flex items-center justify-center'>
-                                        Finalizar Pedido
-                                        <ArrowRight className='ml-2 h-4 w-4' />
-                                    </span>
-                                </Button> */}
-
                                 <CheckOrderButton />
 
                                 <p className='text-muted-foreground text-center text-xs'>
