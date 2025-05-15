@@ -14,7 +14,8 @@ import { Separator } from '@/components/ui/separator';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { categoryNames } from '@/constants/product/categories';
 import { products_data } from '@/db/product-data';
-import type { Product, ProductById } from '@/types/product';
+import { produtos } from '@/db/produtos';
+import type { Product, ProductWitCategory } from '@/types/product';
 import { formatPrice } from '@/utils/format_price';
 
 import { ArrowLeft, Check, Heart, Minus, Plus, Share2, ShoppingCart, Star } from 'lucide-react';
@@ -22,13 +23,13 @@ import { ArrowLeft, Check, Heart, Minus, Plus, Share2, ShoppingCart, Star } from
 export default function ProductPage() {
     const params = useParams();
     const router = useRouter();
-    const [product, setProduct] = useState<ProductById | null>(null);
+    const [product, setProduct] = useState<ProductWitCategory | null>(null);
     const [quantity, setQuantity] = useState(1);
     const [cartItems, setCartItems] = useState<Product[]>([]);
 
     useEffect(() => {
-        const productId = Number(params.id);
-        const foundProduct = products_data.find((p) => p.id === productId) || null;
+        const productId = params.id;
+        const foundProduct = produtos.find((p) => p.codigo === productId) || null;
         setProduct(foundProduct);
     }, [params.id]);
 
@@ -41,7 +42,7 @@ export default function ProductPage() {
     };
 
     const incrementQuantity = () => {
-        if (quantity < (product?.stock || 10)) {
+        if (quantity < (product?.estoque || 10)) {
             setQuantity((prev) => prev + 1);
         }
     };
@@ -77,8 +78,8 @@ export default function ProductPage() {
                     {/* Imagem do produto */}
                     <div className='bg-muted/10 relative aspect-square overflow-hidden rounded-lg'>
                         <Image
-                            src={product.image || '/placeholder.svg'}
-                            alt={product.name}
+                            src={product.imagem || '/placeholder.svg'}
+                            alt={product.nome}
                             fill
                             className='object-contain p-8'
                         />
@@ -89,12 +90,12 @@ export default function ProductPage() {
                         <div className='mb-6'>
                             <div className='mb-2 flex items-center gap-2'>
                                 <Badge variant='outline' className='border-0 bg-blue-100 text-blue-800'>
-                                    {categoryNames[product.category]}
+                                    {categoryNames[product.categoria || 'Todos']}
                                 </Badge>
-                                <span className='text-muted-foreground text-sm'>Cód. {product.code}</span>
+                                <span className='text-muted-foreground text-sm'>Cód. {product.codigo}</span>
                             </div>
 
-                            <h1 className='mb-2 text-3xl font-bold'>{product.name}</h1>
+                            <h1 className='mb-2 text-3xl font-bold'>{product.nome}</h1>
 
                             <div className='mb-4 flex items-center gap-2'>
                                 <div className='flex'>
@@ -108,18 +109,18 @@ export default function ProductPage() {
                                 <span className='text-muted-foreground text-sm'>(12 avaliações)</span>
                             </div>
 
-                            <p className='mb-4 text-3xl font-bold'>{formatPrice(product.price)}</p>
+                            <p className='mb-4 text-3xl font-bold'>{formatPrice(product.preco)}</p>
 
                             <p className='text-muted-foreground mb-6'>
-                                {product.description ||
-                                    `O ${product.name} é um equipamento médico de alta qualidade, projetado para oferecer desempenho excepcional em ambientes hospitalares. Fabricado com materiais duráveis e tecnologia avançada, este produto atende aos mais rigorosos padrões de qualidade e segurança.`}
+                                {product.descricao ||
+                                    `O ${product.nome} é um equipamento médico de alta qualidade, projetado para oferecer desempenho excepcional em ambientes hospitalares. Fabricado com materiais duráveis e tecnologia avançada, este produto atende aos mais rigorosos padrões de qualidade e segurança.`}
                             </p>
                         </div>
 
                         <Separator className='mb-6' />
 
                         {/* Quantidade e botões de ação */}
-                        <div className='space-y-4'>
+                        {/* <div className='space-y-4'>
                             <div className='flex items-center gap-4'>
                                 <span className='font-medium'>Quantidade:</span>
                                 <div className='flex items-center'>
@@ -135,7 +136,7 @@ export default function ProductPage() {
                                         variant='outline'
                                         size='icon'
                                         onClick={incrementQuantity}
-                                        disabled={quantity >= (product.stock || 10)}>
+                                        disabled={quantity >= (product.estoque || 10)}>
                                         <Plus className='h-4 w-4' />
                                     </Button>
                                 </div>
@@ -158,14 +159,14 @@ export default function ProductPage() {
 
                             <div className='text-muted-foreground flex items-center gap-2 text-sm'>
                                 <Check className='h-4 w-4 text-green-500' />
-                                <span>{product.stock || 10} em estoque</span>
+                                <span>{product.estoque || 10} em estoque</span>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </div>
 
                 {/* Tabs de informações adicionais */}
-                <div className='mt-12'>
+                {/* <div className='mt-12'>
                     <Tabs defaultValue='specifications'>
                         <TabsList className='w-full justify-start'>
                             <TabsTrigger value='specifications'>Especificações</TabsTrigger>
@@ -274,17 +275,17 @@ export default function ProductPage() {
                             </Card>
                         </TabsContent>
                     </Tabs>
-                </div>
+                </div> */}
 
                 {/* Produtos relacionados */}
-                <div className='mt-16'>
+                {/* <div className='mt-16'>
                     <h2 className='mb-6 text-2xl font-bold'>Produtos Relacionados</h2>
                     <RelatedProducts
                         currentProductId={product.id}
                         category={product.category}
                         onAddToCart={(product) => setCartItems((prev) => [...prev, product])}
                     />
-                </div>
+                </div> */}
             </div>
         </div>
     );

@@ -6,21 +6,17 @@ import Image from 'next/image';
 
 import { Button } from '@/components/ui/button';
 import { Separator } from '@/components/ui/separator';
+import { Product } from '@/lib/seed';
+import { ProductWitCategory } from '@/types/product';
 
 import { Minus, Plus, Trash2 } from 'lucide-react';
 
 interface CartItemProps {
-    item: {
-        id: number;
-        name: string;
-        price: number;
-        quantity: number;
-        image: string;
-    };
+    item: ProductWitCategory;
 }
 
 export function CartItem({ item }: CartItemProps) {
-    const [quantity, setQuantity] = useState(item.quantity);
+    const [quantity, setQuantity] = useState(1);
 
     const handleIncrement = () => {
         setQuantity(quantity + 1);
@@ -34,18 +30,18 @@ export function CartItem({ item }: CartItemProps) {
 
     const handleRemove = () => {
         // Implementar lógica de remoção
-        console.log(`Removendo item ${item.id}`);
+        console.log(`Removendo item ${item.codigo}`);
     };
 
     return (
         <div className='flex flex-col space-y-4'>
             <div className='flex items-start space-x-4'>
                 <div className='relative h-28 w-28 overflow-hidden rounded-lg bg-gray-100'>
-                    <Image src={item.image || '/placeholder.svg'} alt={item.name} fill className='object-cover' />
+                    <Image src={item.imagem || '/placeholder.svg'} alt={item.nome} fill className='object-cover' />
                 </div>
                 <div className='flex-1 space-y-1'>
-                    <h3 className='font-medium'>{item.name}</h3>
-                    <p className='text-muted-foreground text-sm'>ID: {item.id}</p>
+                    <h3 className='font-medium'>{item.nome}</h3>
+                    <p className='text-muted-foreground text-sm'>ID: {item.codigo}</p>
                     <div className='mt-2 flex items-center space-x-2'>
                         <Button
                             variant='outline'
@@ -68,7 +64,7 @@ export function CartItem({ item }: CartItemProps) {
                     </div>
                 </div>
                 <div className='flex flex-col items-end space-y-2'>
-                    <span className='font-medium'>R$ {(item.price * quantity).toFixed(2)}</span>
+                    <span className='font-medium'>R$ {(item.preco * quantity).toFixed(2)}</span>
                     <Button
                         variant='ghost'
                         size='sm'
