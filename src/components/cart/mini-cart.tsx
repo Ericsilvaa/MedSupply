@@ -11,7 +11,7 @@ type MiniCartProps = {
 };
 
 export default function MiniCart({ cartItems }: MiniCartProps) {
-    const total = cartItems.reduce((sum, item) => sum + item.price, 0);
+    const total = cartItems.reduce((sum, item) => sum + item.preco, 0);
 
     return (
         <Sheet>
@@ -31,8 +31,8 @@ export default function MiniCart({ cartItems }: MiniCartProps) {
                     ) : (
                         cartItems.map((item, index) => (
                             <div key={index} className='flex justify-between border-b pb-2'>
-                                <span className='text-sm'>{item.name}</span>
-                                <span className='text-sm font-medium'>R$ {item.price.toFixed(2)}</span>
+                                <span className='text-sm'>{item.nome}</span>
+                                <span className='text-sm font-medium'>R$ {item.preco.toFixed(2)}</span>
                             </div>
                         ))
                     )}
